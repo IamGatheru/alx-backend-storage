@@ -1,12 +1,3 @@
--- SQL script that creates a stored procedure ComputeAverageScoreForUser
-DROP PROCEDURE IF EXISTS ComputeAverageScoreForUser;
-DELIMITER $$
-CREATE PROCEDURE ComputeAverageScoreForUser(
-    IN user_id INT)
-BEGIN
-    DECLARE avg_score FLOAT;
-    SET avg_score = (SELECT AVG(score) FROM corrections AS C WHERE C.user_id=user_id);
-    UPDATE users SET average_score = avg_score WHERE id=user_id;
-END
-$$
-DELIMITER ;
+-- SQL script that creates an index idx_name_first on the table names and the first letter of name
+CREATE INDEX idx_name_first
+ON names (name(1));
